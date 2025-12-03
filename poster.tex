@@ -1,0 +1,261 @@
+\documentclass[final]{beamer}
+
+% ====================
+% Packages
+% ====================
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{luainputenc}
+\usepackage{lmodern}
+\usepackage[size=custom, width=122,height=91, scale=1.2]{beamerposter}
+\usetheme{gemini}
+\usecolortheme{msu} % keep MSU theme as you want
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.14}
+\usepackage{anyfontsize}
+\usepackage{qrcode}
+\usepackage{xcolor}             % <--- added
+\definecolor{uclaBlue}{HTML}{2774AE}  % <--- added
+\setbeamercolor{headline}{bg=uclaBlue, fg=white}  % <--- ONLY change
+
+% ====================
+% Lengths
+% ====================
+
+\newlength{\sepwidth}
+\newlength{\colwidth}
+\setlength{\sepwidth}{0.025\paperwidth}
+\setlength{\colwidth}{0.3\paperwidth}
+
+\newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
+
+% ====================
+% Title and Header
+% ====================
+
+\title{How do the characteristics and humanitarian impacts of U.S. counterterrorism strikes differ between Somalia and Yemen?}
+
+\author{
+Shanmei Wanyan \quad Daniel Dai \quad Keivan Bolouri Siahkhalehsar \\ 
+Itaru Fukushima \quad Linxue Guo \quad Evelyn Isaka
+}
+
+\institute[shortinst]{University of California, Los Angeles (UCLA)}
+
+% ====================
+% Footer with QR Code
+% ====================
+
+\footercontent{
+  \href{mailto:youremail@ucla.edu}{keivanbolouri@g.ucla.edu} 
+  \hfill Poster Session \hfill
+  \qrcode[height=6cm]{ https://keivanbolouri.github.io/finalProject140XP/}
+}
+
+% ====================
+% Logo (Left or Right)
+% ====================
+
+\logoright{\includegraphics[height=9cm]{ucla.png}}
+
+
+% ====================
+% Document Body
+% ====================
+
+\begin{document}
+
+\begin{frame}[t]
+\begin{columns}[t]
+\separatorcolumn
+
+% ====================
+% COLUMN 1
+% ====================
+
+\begin{column}{\colwidth}
+
+\begin{block}{Introduction}
+
+\textbf{The Problem: Drone Warfare’s Divergent Impact}
+
+Since 2002, the U.S. has waged a clandestine counterterrorism campaign in nations like Yemen and Somalia, relying heavily on drone strikes to eliminate militant targets. While these operations minimize risk to U.S. forces, their humanitarian impact—particularly on civilian lives—remains a critical, under-examined concern.
+
+This research addresses that gap by conducting the first direct, quantitative comparison of strike characteristics and humanitarian outcomes between Somalia and Yemen. Findings could inform targeting and engagement policies and guide public debate surrounding drone warfare.
+
+\vspace{2em}
+
+\textbf{Data and Approach}
+
+We analyzed open-source strike records for Yemen (2002–Present) and Somalia, including strike types, targets, and casualty ranges (minimum–maximum killed). These ranges matter because official U.S. reporting often underestimates civilian casualties.  
+
+\vspace{2em}
+
+
+\textbf{Testable Hypotheses}
+
+\begin{enumerate}
+  \item Civilian Harm Difference (H1)
+  \item Drone Effectiveness Difference (H2)
+  \item Reporting Uncertainty (H3)
+
+\vspace{4cm}
+\end{enumerate}
+
+
+\begin{figure}
+    \centering
+    \includegraphics[width=0.75\textwidth]{boxplot_total_killed.png}
+    \caption*{Total Fatalities by Region (log scale)}
+\end{figure}
+
+\end{block}
+
+\end{column}
+
+\separatorcolumn
+
+% ====================
+% COLUMN 2
+% ====================
+
+\begin{column}{\colwidth}
+
+\begin{block}{Methods}
+
+\textbf{Research Design and Data}
+
+Our study is a Comparative Quantitative Analysis of U.S. counterterrorism strikes in Yemen (2002–Present) and Somalia (2007–Present). We use Linear Regression for this initial analysis, focusing on how strike characteristics influence humanitarian outcomes. We are primarily testing Hypothesis 2—that the effect of drone strikes on civilian casualties differs between Somalia and Yemen. 
+\vspace{2em}
+
+\textbf{Data Processing}
+
+\begin{itemize}
+\item Filtering for strike details and casualty variables  
+\item Standardizing variable names  
+\item Merging files with a Region variable    
+
+\end{itemize}
+\vspace{2em}  
+
+\textbf{Regression Model}
+
+\begin{table}[t]
+\centering
+\small
+\caption{Condensed hypothesis summary.}
+\begin{tabular}{p{0.20\linewidth}p{0.7\linewidth}}\toprule
+
+\textbf{Hypothesis} & \textbf{Model} \\\midrule
+
+
+\textbf{H1} 
+& $civ \sim region + drone + usconf + strikes + killed$ \\
+
+
+\textbf{H2} 
+& $civ \sim drone + region + drone:region + controls$ \\
+
+
+\textbf{H3} 
+& $uncert \sim region + drone + usconf + strikes$ \\ \bottomrule
+
+\end{tabular}
+\end{table}
+
+
+
+
+
+
+
+
+\vspace{6cm}
+
+\section*{Fatality Distribution by Region}
+
+
+
+
+
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=0.85\linewidth]{violin_total_killed.png}
+\end{figure}
+
+
+
+
+
+
+
+
+\end{block}
+
+
+
+\end{column}
+
+\separatorcolumn
+% \includegraphics[width=\linewidth]{figures/model_summary.png}  % Replace with your actual exported figure
+% ====================
+% COLUMN 3
+% ====================
+
+\begin{column}{\colwidth}
+
+\begin{block}{Results}
+
+
+
+
+
+\begin{block}{Results (Summary)}
+
+\textbf{H1: Civilian Harm}\\
+Yemen shows significantly higher civilian casualties than Somalia (IRR $\approx 4.9$, $p=0.013$). \textbf{Supported.}
+
+\medskip
+
+\textbf{H2: Drone Effectiveness}\\
+The drone~$\times$~region interaction is not significant ($p=0.69$). Drone effects do not differ between countries. \textbf{Not supported.}
+
+\medskip
+
+\textbf{H3: Reporting Uncertainty}\\
+Uncertainty does not differ between Somalia and Yemen ($p=0.54$). Drones increase uncertainty; confirmed strikes reduce it. \textbf{Not supported.}
+
+\end{block}
+
+
+
+\end{block}
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.85\linewidth]{plot_mean_civilians.png}
+    \caption{Mean Civilian Casualties by Region}
+\end{figure}
+
+\vspace{1cm}
+
+\begin{figure}[t]
+    \centering
+    \includegraphics[width=0.85\linewidth]{plot_uncertainty.png}
+    \caption{Reporting Uncertainty by Region}
+\end{figure}
+
+
+
+
+
+\end{column}
+
+\separatorcolumn
+\end{columns}
+\end{frame}
+
+\end{document}
